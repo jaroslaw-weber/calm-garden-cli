@@ -1,0 +1,27 @@
+{
+  "name": "cli-box-breathing",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.ts",
+  "scripts": {
+    "start": "ts-node src/index.ts",
+    "progress": "ts-node src/index.ts --progress",
+    "shop": "ts-node src/index.ts --shop",
+    "reset": "ts-node src/index.ts --reset"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/node": "^22.5.2",
+    "@types/node-persist": "^3.1.8",
+    "@types/opener": "^1.4.3",
+    "typescript": "^5.5.4"
+  },
+  "dependencies": {
+    "commander": "^12.1.0",
+    "enquirer": "^2.4.1",
+    "node-persist": "^4.0.3",
+    "opener": "^1.5.2"
+  }
+}
