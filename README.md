@@ -14,13 +14,16 @@ Enhance your relaxation and focus with this command-line interface (CLI) applica
 ## 🖼️ Screenshots
 
 Breathing exercise:
-![Breathing Exercise](../preview/breathe.webp)
+
+![Breathing Exercise](./preview/breathe.webp)
 
 Progress visualized as a garden:
-![Virtual Garden](../preview/garden.png)
+
+![Virtual Garden](./preview/garden.png)
 
 Shop:
-![Shop](../preview/shop.png)
+
+![Shop](./preview/shop.png)
 
 
 ## 🚀 Installation
