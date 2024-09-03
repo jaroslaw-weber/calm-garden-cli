@@ -6,12 +6,11 @@ export function setupConfig() {
 
   program
     .option("-d, --duration <number>", "Duration of each phase in seconds", "4")
-    .option(
-      "-p, --progress",
-      "Show progress only without starting the exercise"
-    )
+    .option("-g, --garden", "View your garden")
+    .option("-p, --progress", "View your progress")
+    .option("-b, --breathe", "Start a breathing exercise")
     .option("-s, --shop", "Open the garden shop")
-    .option("-r, --reset", "Reset the garden to its initial state"); // New option
+    .option("-r, --reset", "Reset the garden to its initial state");
 
   program.parse(process.argv);
 

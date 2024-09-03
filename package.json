@@ -2,12 +2,17 @@
   "name": "cli-box-breathing",
   "version": "1.0.0",
   "description": "",
-  "main": "index.ts",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "scripts": {
     "start": "ts-node src/index.ts",
+    "breathe": "ts-node src/index.ts --breathe",
     "progress": "ts-node src/index.ts --progress",
+    "garden": "ts-node src/index.ts --garden",
     "shop": "ts-node src/index.ts --shop",
-    "reset": "ts-node src/index.ts --reset"
+    "reset": "ts-node src/index.ts --reset",
+    "build": "tsc",
+    "prepublishOnly": "npm run build"
   },
   "keywords": [],
   "author": "",
@@ -23,5 +28,8 @@
     "enquirer": "^2.4.1",
     "node-persist": "^4.0.3",
     "opener": "^1.5.2"
+  },
+  "bin": {
+    "cli-box-breathing": "./dist/index.js"
   }
 }
