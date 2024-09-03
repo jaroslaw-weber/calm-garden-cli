@@ -23,7 +23,9 @@ export async function showGarden(): Promise<void> {
 
   try {
     await open(gardenUrl);
+
     console.log("Opening your garden in the default browser...");
+    console.log(gardenUrl)
   } catch (error) {
     console.error(
       "Failed to open the browser. Please visit this URL manually:"
