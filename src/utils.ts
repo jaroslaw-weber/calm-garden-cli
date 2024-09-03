@@ -17,5 +17,5 @@ function encodeGarden(garden: (Plant | null)[][]): string {
 
 export function generateGardenUrl(garden: (Plant | null)[][]): string {
   const encodedGarden = encodeGarden(garden);
-  return `https://jaroslaw-weber.github.io/calm-garden/garden?data=${encodedGarden}`;
+  return `https://jaroslaw-weber.github.io/calm-garden/#/garden?data=${encodedGarden}`;
 }
