@@ -1,6 +1,6 @@
 import { exit } from "process";
 import { loadData } from "./storage";
-import { clearConsole, generateGardenUrl } from "./utils";
+import { clearConsole } from "./utils";
 import open from "opener";
 
 export async function showProgress(): Promise<void> {
@@ -19,17 +19,6 @@ export async function showProgress(): Promise<void> {
     };
   });
 
-  const gardenUrl = generateGardenUrl(garden);
-
-  try {
-    await open(gardenUrl);
-    console.log("Opening your garden in the default browser...");
-  } catch (error) {
-    console.error(
-      "Failed to open the browser. Please visit this URL manually:"
-    );
-    console.log(gardenUrl);
-  }
 
   // Exit the process after attempting to open the URL
   exit(0);
