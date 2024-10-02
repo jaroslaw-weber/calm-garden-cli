@@ -44,7 +44,7 @@ Shop:
 
 ## 🚀 Installation
 
-Clone the repository and install packages:
+Install the app directly from repository:
 
 ```bash
 npm install -g github:jaroslaw-weber/calm-garden-cli
