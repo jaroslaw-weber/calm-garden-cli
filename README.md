@@ -3,6 +3,16 @@
 
 Enhance your relaxation and focus with this command-line interface (CLI) application for box breathing. Practice this powerful technique while growing a virtual garden, making your stress-reduction journey both enjoyable and rewarding.
 
+
+## 🤔 Why CLI?
+
+- 🔇 Discreet: Practice box breathing right from your terminal without drawing attention.
+- ⏱️ Quick Breaks: Easily take short breathing breaks during work without switching contexts.
+- 🚫 Distraction-Free: No flashy graphics or notifications to disrupt your focus.
+- 🖥️ Always Accessible: If you have access to a terminal, you have access to your breathing exercises.
+- 🛡️ Privacy: Practice self-care without anyone knowing or interrupting you.
+
+
 ## 🌟 Features
 
 - 🕒 Customizable box breathing exercises with adjustable duration
@@ -28,10 +38,10 @@ Shop:
 
 ## 🚀 Installation
 
-Install the app globally using npm:
+Clone the repository and install packages:
 
 ```bash
-npm install -g cli-box-breathing
+npm i
 ```
 
 ## 🏁 Quick Start
@@ -39,7 +49,19 @@ npm install -g cli-box-breathing
 After installation, run the app with:
 
 ```bash
-cli-box-breathing
+npm run breathe
+```
+
+To open shop:
+
+```bash
+npm run shop
+```
+
+To see your garden:
+
+```bash
+npm run garden
 ```
 
 ## 💡 Why Box Breathing?
