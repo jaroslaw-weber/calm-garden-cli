@@ -2,16 +2,17 @@ import { prompt } from "enquirer";
 import { Plant } from "./Plant";
 import { BreathingData, saveData, loadData } from "./storage";
 import { clearConsole } from "./utils";
+import { plantEmojis } from "./emoji";
 interface ShopItem {
   name: string;
   type: string;
   cost: number;
+  emoji?: string;
 }
 const price1 = 80;
 const shopItems: ShopItem[] = [
   { name: "Anthurium", type: "anthurium", cost: price1 },
   { name: "Arugula", type: "arugula", cost: price1 },
-  { name: "Chive Blossoms", type: "chive-blossoms", cost: price1 },
   { name: "Daisy", type: "daisy", cost: price1 },
   { name: "Iris", type: "iris", cost: price1 },
   { name: "Lavender", type: "lavender", cost: price1 },
@@ -26,33 +27,42 @@ const shopItems: ShopItem[] = [
   { name: "Tree", type: "tree", cost: price1 },
   { name: "Tulips", type: "tulips", cost: price1 },
   { name: "Garden Expansion", type: "expansion", cost: 0 }, // Cost will be calculated dynamically
+  // Add this to the shopItems array, right after the "Garden Expansion" item
+  { name: "Shuffle Garden", type: "shuffle", cost: 50 },
 ];
+
+for (const item of shopItems) {
+  item.emoji = plantEmojis[item.type] || "";
+}
 
 function calculateExpansionPrice(currentSize: number): number {
   return Math.floor(100 * Math.pow(1.5, currentSize - 3));
 }
+
 export async function showShop(): Promise<void> {
   let data = await loadData();
 
   while (true) {
     clearConsole();
-    console.log("Welcome to the Garden Shop!");
-    console.log(`You have ${data.coins} coins.`);
-    console.log(`Your garden size: ${data.gardenSize}x${data.gardenSize}\n`);
+    console.log("🏪 Welcome to the Garden Shop!");
+    console.log(`💰 You have ${data.coins} coins.`);
+    console.log(`🌳 Your garden size: ${data.gardenSize}x${data.gardenSize}\n`);
 
     const expansionPrice = calculateExpansionPrice(data.gardenSize);
     const choices = shopItems.map((item, index) => ({
       name:
         item.name === "Garden Expansion"
-          ? `${item.name} (${data.gardenSize + 1}x${data.gardenSize + 1})`
-          : item.name,
+          ? `${item.emoji} ${item.name} (${data.gardenSize + 1}x${
+              data.gardenSize + 1
+            })`
+          : `${item.emoji} ${item.name}`,
       value: index,
       hint:
         item.name === "Garden Expansion"
           ? ` (Cost: ${expansionPrice} coins)`
           : ` (Cost: ${item.cost} coins)`,
     }));
-    choices.push({ name: "Exit Shop", value: -1, hint: "Leave the shop" });
+    choices.push({ name: "🚪 Exit Shop", value: -1, hint: "Leave the shop" });
 
     const response = await prompt<{ choice: string }>({
       type: "select",
@@ -63,11 +73,8 @@ export async function showShop(): Promise<void> {
 
     if (response.choice.includes("Exit")) break;
 
-    console.log("choice", response.choice);
-    const item = shopItems.find((x) => response.choice.startsWith(x.name));
-    console.log("Purchased:", item);
+    const item = shopItems.find((x) => response.choice.includes(x.name));
 
-    // Add this check
     if (item) {
       await purchaseItem(data, item);
     } else {
@@ -91,6 +98,14 @@ async function purchaseItem(
       console.log(
         `You've expanded your garden! New size: ${data.gardenSize}x${data.gardenSize}`
       );
+    } else if (item.name === "Shuffle Garden") {
+      if (data.plants && data.plants.length > 1) {
+        shuffleGarden(data);
+        console.log("Your garden has been shuffled!");
+      } else {
+        console.log("You need at least two plants to shuffle the garden.");
+        data.coins += item.cost; // Refund the coins
+      }
     } else {
       if (!data.plants) data.plants = [];
       if (data.plants.length < data.gardenSize * data.gardenSize) {
@@ -124,4 +139,29 @@ function placePlantRandomly(data: BreathingData, item: ShopItem): Plant {
 
 function sleep(ms: number): Promise<void> {
   return new Promise((resolve) => setTimeout(resolve, ms));
+}
+function shuffleGarden(data: BreathingData): void {
+  if (!data.plants || data.plants.length <= 1) return;
+
+  const availablePositions: { x: number; y: number }[] = [];
+  for (let x = 0; x < data.gardenSize; x++) {
+    for (let y = 0; y < data.gardenSize; y++) {
+      availablePositions.push({ x, y });
+    }
+  }
+
+  // Fisher-Yates shuffle algorithm
+  for (let i = availablePositions.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [availablePositions[i], availablePositions[j]] = [
+      availablePositions[j],
+      availablePositions[i],
+    ];
+  }
+
+  for (let i = 0; i < data.plants.length; i++) {
+    const newPosition = availablePositions[i];
+    data.plants[i].x = newPosition.x;
+    data.plants[i].y = newPosition.y;
+  }
 }

@@ -1,38 +1,30 @@
-import { exit } from "process";
+import { plantEmojis } from "./emoji";
 import { loadData } from "./storage";
-import { clearConsole, generateGardenUrl } from "./utils";
-import open from "opener";
+import { clearConsole } from "./utils";
 
+const emptyPlotEmoji = "🌱"; // Grass emoji for empty plots
 export async function showGarden(): Promise<void> {
   clearConsole();
   let data = await loadData();
 
-  // Convert the plants data to the format expected by generateGardenUrl
-  const garden = new Array(data.gardenSize)
-    .fill(null)
-    .map(() => new Array(data.gardenSize).fill(null));
+  console.log("Your Garden:\n");
 
-  data.plants.forEach((plant) => {
-    garden[plant.y][plant.x] = {
-      type: plant.type,
-      growth: 1, // Assuming full growth, adjust if you have a growth property
-    };
-  });
-
-  const gardenUrl = generateGardenUrl(garden);
-
-  try {
-    await open(gardenUrl);
-
-    console.log("Opening your garden in the default browser...");
-    console.log(gardenUrl)
-  } catch (error) {
-    console.error(
-      "Failed to open the browser. Please visit this URL manually:"
-    );
-    console.log(gardenUrl);
+  for (let y = 0; y < data.gardenSize; y++) {
+    let row = "";
+    for (let x = 0; x < data.gardenSize; x++) {
+      const plant = data.plants.find((p) => p.x === x && p.y === y);
+      if (plant) {
+        row += plantEmojis[plant.type] || "🌱"; // Default to seedling if type not found
+      } else {
+        row += emptyPlotEmoji; // Empty plot
+      }
+    }
+    console.log(row);
   }
 
-  // Exit the process after attempting to open the URL
-  exit(0);
+  console.log("\nLegend:");
+  console.log(emptyPlotEmoji + " - Empty plot");
+  Object.entries(plantEmojis).forEach(([type, emoji]) => {
+    console.log(`${emoji} - ${type.charAt(0).toUpperCase() + type.slice(1)}`);
+  });
 }
