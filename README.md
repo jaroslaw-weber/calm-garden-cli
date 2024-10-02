@@ -47,7 +47,7 @@ Shop:
 Clone the repository and install packages:
 
 ```bash
-npm i
+npm install -g github:jaroslaw-weber/calm-garden-cli
 ```
 
 ## 🏁 Quick Start
@@ -55,25 +55,25 @@ npm i
 To start breathing exercise, type:
 
 ```bash
-npm run box-breathing
+calm-garden-cli box-breathing
 ```
 
 or
 
 ```bash
-npm run physiological-sigh
+calm-garden-cli physiological-sigh
 ```
 
 To open shop:
 
 ```bash
-npm run shop
+calm-garden-cli shop
 ```
 
 To see your garden:
 
 ```bash
-npm run garden
+calm-garden-cli garden
 ```
 
 ## 💡 Why Box Breathing?
