@@ -31,6 +31,6 @@
     "opener": "^1.5.2"
   },
   "bin": {
-    "cli-box-breathing": "./dist/index.js"
+    "calm-garden-cli": "./dist/index.js"
   }
 }
