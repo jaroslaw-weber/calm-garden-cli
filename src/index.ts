@@ -2,7 +2,7 @@
 import { setupConfig } from "./cli";
 import { showGarden } from "./garden";
 import { showProgress } from "./progress";
-import { startBoxBreathing } from "./breathe";
+import { startBreathing } from "./breathe";
 import { showShop } from "./shop";
 import { initStorage, resetData } from "./storage";
 
@@ -14,8 +14,10 @@ async function main() {
     await showGarden();
   } else if (options.progress) {
     await showProgress();
-  } else if (options.breathe) {
-    await startBoxBreathing(Number(options.duration));
+  } else if (options.boxBreathing) {
+    await startBreathing("box");
+  } else if (options.physiologicalSigh) {
+    await startBreathing("sigh");
   } else if (options.shop) {
     await showShop();
   } else if (options.reset) {

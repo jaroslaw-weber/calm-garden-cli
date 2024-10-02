@@ -1,13 +1,14 @@
 {
-  "name": "cli-box-breathing",
+  "name": "cli-calm-garden",
   "version": "1.0.0",
   "description": "",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
     "start": "ts-node src/index.ts",
-    "breathe": "ts-node src/index.ts --breathe",
-    "progress": "ts-node src/index.ts --progress",
+    "breathe": "ts-node src/index.ts --box-breathing",
+    "box-breathing": "ts-node src/index.ts --box-breathing",
+    "physiological-sigh": "ts-node src/index.ts --physiological-sigh",
     "garden": "ts-node src/index.ts --garden",
     "shop": "ts-node src/index.ts --shop",
     "reset": "ts-node src/index.ts --reset",

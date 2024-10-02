@@ -1,7 +1,7 @@
 
-# CLI Box Breathing App
+# CLI Calm Garden
 
-Enhance your relaxation and focus with this command-line interface (CLI) application for box breathing. Practice this powerful technique while growing a virtual garden, making your stress-reduction journey both enjoyable and rewarding.
+Enhance your relaxation and focus with this command-line interface (CLI) application for breathing exercise. Practice this powerful technique while growing a virtual garden, making your stress-reduction journey both enjoyable and rewarding.
 
 
 ## 🤔 Why CLI?
@@ -20,6 +20,12 @@ Enhance your relaxation and focus with this command-line interface (CLI) applica
 - 🌱 Virtual garden to visualize your growth
 - 🛍️ In-app shop to acquire new plants for your garden
 - 💰 Coin system to reward consistent practice
+
+## 🧘 Available Breathing Techniques
+
+- 📦 Box Breathing: A simple yet powerful technique to reduce stress and improve focus
+
+Choose the technique that best suits your needs and start your journey to inner calm!
 
 ## 🖼️ Screenshots
 
@@ -46,10 +52,16 @@ npm i
 
 ## 🏁 Quick Start
 
-After installation, run the app with:
+To start breathing exercise, type:
 
 ```bash
-npm run breathe
+npm run box-breathing
+```
+
+or
+
+```bash
+npm run physiological-sigh
 ```
 
 To open shop:
