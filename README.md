@@ -82,7 +82,8 @@ Shop for Plants: Use your earned coins to buy new plants for your virtual garden
 
 Your progress and garden data are stored locally on your machine using the node-persist library. The data is typically saved in a `.node-persist` directory within your home folder (e.g., `~/.node-persist/` on Unix-like systems or `C:\Users\YourUsername\.node-persist\` on Windows). This ensures your data persists between sessions, allowing you to track your long-term progress.
 
-🛠️ Development
+## 🛠️ Development
+
 To set up the project for development:
 
 1.
