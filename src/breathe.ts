@@ -1,39 +1,48 @@
 import { BreathingData, loadData, saveData } from "./storage";
 import { sleep, clearConsole } from "./utils";
+import * as readline from 'readline';
+interface BreathingPhase {
+  name: string;
+  duration: number;
+}
 
-export async function boxBreathing(data: BreathingData): Promise<void> {
-  const duration = 4;
-  const phases = ["Inhale", "Hold", "Exhale", "Hold"];
-  for (let phase of phases) {
-    for (let second = 1; second <= duration; second++) {
+const boxBreathingPattern: BreathingPhase[] = [
+  { name: "Inhale", duration: 4 },
+  { name: "Hold", duration: 4 },
+  { name: "Exhale", duration: 4 },
+  { name: "Hold", duration: 4 },
+];
+
+const physiologicalSighPattern: BreathingPhase[] = [
+  { name: "Inhale", duration: 2 },
+  { name: "Hold", duration: 1 },
+  { name: "Inhale", duration: 1 },
+  { name: "Hold", duration: 1 },
+  { name: "Exhale", duration: 5 },
+];
+
+async function performBreathing(data: BreathingData, pattern: BreathingPhase[]): Promise<void> {
+  for (const phase of pattern) {
+    for (let second = 1; second <= phase.duration; second++) {
       clearConsole();
-      console.log(`${phase} ${second}`);
-      await sleep(1000);
+      console.log(`${phase.name} ${second}/${phase.duration}`);
+      console.log("Press Ctrl+C to stop the breathing exercise");
+
+      await sleep(1000);  // Wait for 1 second
+
       data.totalSecondsPracticed++;
       data.coins++;
-      //save progress to storage after each breathing cycle
-      //this will be useful for tracking progress over time and maybe motivate the user to continue practicing
       await saveData(data);
     }
   }
 }
 
-//A physiological sigh is a type of deep breath characterized by a double inhalation, followed by a single, longer exhalation.
+export async function boxBreathing(data: BreathingData): Promise<void> {
+  await performBreathing(data, boxBreathingPattern);
+}
+
 export async function physiologicalSigh(data: BreathingData): Promise<void> {
-  const sighs = ["Inhale", "Hold", "Inhale", "Hold", "Exhale"];
-  const times = [2, 1, 1, 1, 5];
-  for (let i = 0; i < sighs.length; i++) {
-    const phase = sighs[i];
-    const duration = times[i];
-    for (let second = 1; second <= duration; second++) {
-      clearConsole();
-      console.log(`${phase} ${second}/${duration}`);
-      await sleep(1000);
-      data.totalSecondsPracticed++;
-      data.coins++;
-      await saveData(data);
-    }
-  }
+  await performBreathing(data, physiologicalSighPattern);
 }
 
 export async function startBreathing(
@@ -42,7 +51,9 @@ export async function startBreathing(
   clearConsole();
   let data = await loadData();
 
-  while (true) {
+  console.log("Press Ctrl+C at any time to stop the breathing exercise.");
+
+  try {
     if (type === "box") {
       await boxBreathing(data);
     } else if (type === "sigh") {
@@ -51,7 +62,12 @@ export async function startBreathing(
       console.log(
         'Invalid breathing type. Please choose either "box" or "sigh".'
       );
-      return;
+    }
+  } catch (error) {
+    if (error instanceof Error && error.name === 'SIGINT') {
+      console.log("\nBreathing exercise stopped.");
+    } else {
+      throw error;
     }
   }
 }
