@@ -1,7 +1,7 @@
 {
   "name": "calm-garden-cli",
   "version": "1.0.0",
-  "description": "",
+  "description": "breathing exercises in the command line",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
@@ -12,12 +12,13 @@
     "garden": "ts-node src/index.ts --garden",
     "shop": "ts-node src/index.ts --shop",
     "reset": "ts-node src/index.ts --reset",
-    "build": "tsc",
-    "prepublishOnly": "npm run build"
+    "build": "npx tsc",
+    "prepublishOnly": "npm run build",
+    "publish": "npm publish --access public"
   },
   "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "author": "Jaroslaw Weber",
+  "license": "MIT",
   "devDependencies": {
     "@types/node": "^22.5.2",
     "@types/node-persist": "^3.1.8",
