@@ -22,9 +22,11 @@ async function showGarden() {
         }
         console.log(row);
     }
+    /*
     console.log("\nLegend:");
     console.log(emptyPlotEmoji + " - Empty plot");
-    Object.entries(emoji_1.plantEmojis).forEach(([type, emoji]) => {
-        console.log(`${emoji} - ${type.charAt(0).toUpperCase() + type.slice(1)}`);
+    Object.entries(plantEmojis).forEach(([type, emoji]) => {
+      console.log(`${emoji} - ${type.charAt(0).toUpperCase() + type.slice(1)}`);
     });
+    */
 }

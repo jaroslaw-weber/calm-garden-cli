@@ -1,1 +1,3 @@
-export declare function setupConfig(): import("commander").OptionValues;
+export declare function setupConfig(): Promise<{
+    action: string;
+}>;

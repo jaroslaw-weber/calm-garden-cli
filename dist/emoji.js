@@ -18,4 +18,6 @@ exports.plantEmojis = {
     tree: "🌳",
     tulips: "🌷",
     // Add more plant types and their corresponding emojis as needed
+    expansion: "🌱",
+    shuffle: "🔀"
 };

@@ -39,4 +39,5 @@ async function saveData(data) {
 }
 async function resetData() {
     await node_persist_1.default.clear();
+    console.log("Data reset successfully.");
 }

@@ -1,7 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.showProgress = showProgress;
-const process_1 = require("process");
 const storage_1 = require("./storage");
 const utils_1 = require("./utils");
 async function showProgress() {
@@ -13,7 +12,6 @@ async function showProgress() {
     console.log(`Coins earned: ${data.coins}`);
     console.log(`Garden size: ${data.gardenSize}x${data.gardenSize}`);
     console.log(`Number of plants: ${data.plants.length}`);
-    (0, process_1.exit)(0);
 }
 function formatTime(seconds) {
     const hours = Math.floor(seconds / 3600);
