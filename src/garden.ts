@@ -22,9 +22,11 @@ export async function showGarden(): Promise<void> {
     console.log(row);
   }
 
+  /*
   console.log("\nLegend:");
   console.log(emptyPlotEmoji + " - Empty plot");
   Object.entries(plantEmojis).forEach(([type, emoji]) => {
     console.log(`${emoji} - ${type.charAt(0).toUpperCase() + type.slice(1)}`);
   });
+  */
 }

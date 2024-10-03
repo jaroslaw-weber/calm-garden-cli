@@ -15,4 +15,7 @@ export const plantEmojis: { [key: string]: string } = {
   tree: "🌳",
   tulips: "🌷",
   // Add more plant types and their corresponding emojis as needed
+ expansion: "🌱",
+  shuffle: "🔀"
+
 };

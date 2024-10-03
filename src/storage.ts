@@ -42,4 +42,5 @@ export async function saveData(data: BreathingData): Promise<void> {
 
 export async function resetData(): Promise<void> {
   await storage.clear();
+  console.log("Data reset successfully.");
 }
