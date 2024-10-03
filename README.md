@@ -1,5 +1,5 @@
 
-# CLI Calm Garden
+# Calm Garden (CLI)
 
 Enhance your relaxation and focus with this command-line interface (CLI) application for breathing exercise. Practice this powerful technique while growing a virtual garden, making your stress-reduction journey both enjoyable and rewarding.
 
