@@ -1,4 +1,3 @@
-// In index.ts
 import { setupConfig } from "./cli";
 import { showGarden } from "./garden";
 import { showProgress } from "./progress";
@@ -8,23 +7,35 @@ import { initStorage, resetData } from "./storage";
 
 async function main() {
   await initStorage();
-  const options = setupConfig();
+  
+  while (true) {
+    const { action } = await setupConfig();
 
-  if (options.garden) {
-    await showGarden();
-  } else if (options.progress) {
-    await showProgress();
-  } else if (options.boxBreathing) {
-    await startBreathing("box");
-  } else if (options.physiologicalSigh) {
-    await startBreathing("sigh");
-  } else if (options.shop) {
-    await showShop();
-  } else if (options.reset) {
-    await resetData();
-  } else {
-    console.log("Welcome to CLI Box Breathing App!");
-    console.log("Use --help to see available commands.");
+    switch (action) {
+      case 'garden':
+        await showGarden();
+        break;
+      case 'progress':
+        await showProgress();
+        break;
+      case 'boxBreathing':
+        await startBreathing("box");
+        break;
+      case 'physiologicalSigh':
+        await startBreathing("sigh");
+        break;
+      case 'shop':
+        await showShop();
+        break;
+      case 'reset':
+        await resetData();
+        break;
+      case 'exit':
+        console.log("Thank you for using CLI Box Breathing App!");
+        return;
+      default:
+        console.log("Invalid option. Please try again.");
+    }
   }
 }
 

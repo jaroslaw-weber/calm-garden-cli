@@ -1,19 +1,23 @@
-// In cli.ts
-import { Command } from "commander";
+import { prompt } from 'enquirer';
+import chalk from 'chalk';
 
-export function setupConfig() {
-  const program = new Command();
+export async function setupConfig() {
+  console.log(chalk.green('\n🌿 Welcome to CLI Calm Garden 🌿\n'));
 
-  program
-    .option("-g, --garden", "View your garden")
-    .option("-p, --progress", "View your progress")
-    .option("-b, --breathe", "Start a breathing exercise (Box Breathing by default)")
-    .option("-bb, --box-breathing", "Start a box breathing exercise")
-    .option("-ps, --physiological-sigh", "Start a physiological sigh exercise")
-    .option("-s, --shop", "Open the garden shop")
-    .option("-r, --reset", "Reset the garden to its initial state");
+  const response = await prompt<{action: string}>({
+    type: 'select',
+    name: 'action',
+    message: 'What would you like to do?',
+    choices: [
+      { name: 'garden', message: '🏡 Show Garden' },
+      { name: 'progress', message: '📊 Show Progress' },
+      { name: 'boxBreathing', message: '🧘 Start Box Breathing' },
+      { name: 'physiologicalSigh', message: '😮‍💨 Start Physiological Sigh' },
+      { name: 'shop', message: '🛒 Open Shop' },
+      { name: 'reset', message: '🔄 Reset Data' },
+      { name: 'exit', message: '👋 Exit' }
+    ]
+  });
 
-  program.parse(process.argv);
-
-  return program.opts();
+  return response;
 }

@@ -52,28 +52,10 @@ npm i -g calm-garden-cli
 
 ## 🏁 Quick Start
 
-To start breathing exercise, type:
+To open CLI menu, just type:
 
 ```bash
-calm-garden-cli --box-breathing
-```
-
-or
-
-```bash
-calm-garden-cli --physiological-sigh
-```
-
-To open shop:
-
-```bash
-calm-garden-cli --shop
-```
-
-To see your garden:
-
-```bash
-calm-garden-cli --garden
+calm-garden-cli
 ```
 
 ## 💡 Why Box Breathing?
@@ -111,7 +93,7 @@ Install dependencies:
 npm install
 3.
 Run the app in development mode:
-npm start
+npm run start
 
 
 

@@ -1,19 +1,12 @@
 {
   "name": "calm-garden-cli",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "breathing exercises in the command line",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
     "start": "ts-node src/index.ts",
-    "breathe": "ts-node src/index.ts --box-breathing",
-    "box-breathing": "ts-node src/index.ts --box-breathing",
-    "physiological-sigh": "ts-node src/index.ts --physiological-sigh",
-    "garden": "ts-node src/index.ts --garden",
-    "shop": "ts-node src/index.ts --shop",
-    "reset": "ts-node src/index.ts --reset",
     "build": "npx tsc",
-    "prepublishOnly": "npm run build",
     "publish": "npm publish --access public"
   },
   "keywords": [],
@@ -26,6 +19,7 @@
     "typescript": "^5.5.4"
   },
   "dependencies": {
+    "chalk": "^5.3.0",
     "commander": "^12.1.0",
     "enquirer": "^2.4.1",
     "node-persist": "^4.0.3",
