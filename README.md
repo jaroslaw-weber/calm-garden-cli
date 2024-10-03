@@ -44,10 +44,10 @@ Shop:
 
 ## 🚀 Installation
 
-Install the app directly from repository:
+Install the app:
 
 ```bash
-npm install -g github:jaroslaw-weber/calm-garden-cli
+npm i -g calm-garden-cli
 ```
 
 ## 🏁 Quick Start
@@ -55,25 +55,25 @@ npm install -g github:jaroslaw-weber/calm-garden-cli
 To start breathing exercise, type:
 
 ```bash
-calm-garden-cli box-breathing
+calm-garden-cli --box-breathing
 ```
 
 or
 
 ```bash
-calm-garden-cli physiological-sigh
+calm-garden-cli --physiological-sigh
 ```
 
 To open shop:
 
 ```bash
-calm-garden-cli shop
+calm-garden-cli --shop
 ```
 
 To see your garden:
 
 ```bash
-calm-garden-cli garden
+calm-garden-cli --garden
 ```
 
 ## 💡 Why Box Breathing?
