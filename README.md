@@ -21,9 +21,17 @@ Enhance your relaxation and focus with this command-line interface (CLI) applica
 - 🛍️ In-app shop to acquire new plants for your garden
 - 💰 Coin system to reward consistent practice
 
-## 🧘 Available Breathing Techniques
+## Available Breathing Techniques
 
-- 📦 Box Breathing: A simple yet powerful technique to reduce stress and improve focus
+Calm Garden CLI offers several breathing techniques to help you reduce stress and improve focus:
+
+1. **Box Breathing**: Also known as square breathing, this technique involves inhaling, holding, exhaling, and holding again, each for 4 seconds.
+
+2. **Physiological Sigh**: This technique mimics a natural stress-relieving breath pattern, involving two quick inhales followed by a longer exhale.
+
+3. **Pranayama (4-7-8)**: A yogic breathing technique that involves inhaling for 4 seconds, holding for 7 seconds, and exhaling for 8 seconds.
+
+4. **Coherent Breathing**: A simple technique that involves 
 
 Choose the technique that best suits your needs and start your journey to inner calm!
 

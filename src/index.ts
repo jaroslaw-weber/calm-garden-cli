@@ -1,3 +1,4 @@
+#!/usr/bin/env node
 import { setupConfig } from "./cli";
 import { showGarden } from "./garden";
 import { showProgress } from "./progress";
@@ -7,30 +8,30 @@ import { initStorage, resetData } from "./storage";
 
 async function main() {
   await initStorage();
-  
+
   while (true) {
     const { action } = await setupConfig();
 
     switch (action) {
-      case 'garden':
+      case "garden":
         await showGarden();
         break;
-      case 'progress':
+      case "progress":
         await showProgress();
         break;
-      case 'boxBreathing':
-        await startBreathing("box");
+      case "box":
+      case "sigh":
+      case "pranayama":
+      case "coherent":
+        await startBreathing(action);
         break;
-      case 'physiologicalSigh':
-        await startBreathing("sigh");
-        break;
-      case 'shop':
+      case "shop":
         await showShop();
         break;
-      case 'reset':
+      case "reset":
         await resetData();
         break;
-      case 'exit':
+      case "exit":
         console.log("Thank you for using CLI Box Breathing App!");
         return;
       default:

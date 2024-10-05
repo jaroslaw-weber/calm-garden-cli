@@ -29,6 +29,7 @@ const shopItems: ShopItem[] = [
   { name: "Garden Expansion", type: "expansion", cost: 0 }, // Cost will be calculated dynamically
   // Add this to the shopItems array, right after the "Garden Expansion" item
   { name: "Shuffle Garden", type: "shuffle", cost: 50 },
+  { name: "Delete Random Plant", type: "delete", cost: 30 },
 ];
 
 for (const item of shopItems) {
@@ -106,6 +107,14 @@ async function purchaseItem(
         console.log("You need at least two plants to shuffle the garden.");
         data.coins += item.cost; // Refund the coins
       }
+    } else if (item.name === "Delete Random Plant") {
+      if (data.plants && data.plants.length > 0) {
+        const deletedPlant = deleteRandomPlant(data);
+        console.log(`Deleted a ${deletedPlant.name} from your garden!`);
+      } else {
+        console.log("Your garden is empty. There are no plants to delete.");
+        data.coins += item.cost; // Refund the coins
+      }
     } else {
       if (!data.plants) data.plants = [];
       if (data.plants.length < data.gardenSize * data.gardenSize) {
@@ -125,6 +134,15 @@ async function purchaseItem(
     console.log("Not enough coins. Keep practicing to earn more!");
   }
   await sleep(2000);
+}
+function deleteRandomPlant(data: BreathingData): Plant {
+  if (!data.plants || data.plants.length === 0) {
+    throw new Error("No plants in the garden to delete.");
+  }
+
+  const randomIndex = Math.floor(Math.random() * data.plants.length);
+  const [deletedPlant] = data.plants.splice(randomIndex, 1);
+  return deletedPlant;
 }
 
 function placePlantRandomly(data: BreathingData, item: ShopItem): Plant {
