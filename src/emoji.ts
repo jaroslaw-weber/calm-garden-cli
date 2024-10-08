@@ -1,21 +1,37 @@
-export const plantEmojis: { [key: string]: string } = {
-  anthurium: "🌺",
+export const plantEmojis = {
   arugula: "🥬",
   daisy: "🌼",
-  iris: "🌷",
-  lavender: "💜",
+  iris: "🪻",
   lotus: "🪷",
   marigold: "🏵️",
-  "morning-glory": "🌞",
-  pansy: "🌸",
   "pink-rose": "🌹",
   poppy: "🥀",
   sunflower: "🌻",
   tomato: "🍅",
   tree: "🌳",
-  tulips: "🌷",
-  // Add more plant types and their corresponding emojis as needed
- expansion: "🌱",
-  shuffle: "🔀"
+  cactus: "🌵",
+  palm: "🌴",
+  bonsai: "🎍",
+  bamboo: "🎋",
+  hibiscus: "🌺",
+  orchid: "🌷",
+  "cherry-blossom": "🌸",
+  mushroom: "🍄",
+  herb: "🌿",
+  seedling: "🌱",
+  leaves: "🍃",
+  "four-leaf-clover": "🍀",
+  "maple-leaf": "🍁",
+  evergreen: "🌲",
+  rock: "🪨",
+} as const;
 
-};
+export const emojis = {
+  // Add more plant types and their corresponding emojis as needed
+  expansion: "🔍",
+  shuffle: "🔀",
+  sell: "💰",
+  ...plantEmojis,
+} as const;
+
+export type EmojiKey = keyof typeof emojis;

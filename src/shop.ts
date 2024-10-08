@@ -2,38 +2,98 @@ import { prompt } from "enquirer";
 import { Plant } from "./Plant";
 import { BreathingData, saveData, loadData } from "./storage";
 import { clearConsole } from "./utils";
-import { plantEmojis } from "./emoji";
+import { emojis, plantEmojis, EmojiKey } from "./emoji";
 interface ShopItem {
   name: string;
   type: string;
   cost: number;
   emoji?: string;
 }
-const price1 = 80;
+
+const price1 = 50;
 const shopItems: ShopItem[] = [
-  { name: "Anthurium", type: "anthurium", cost: price1 },
-  { name: "Arugula", type: "arugula", cost: price1 },
+  {
+    name: "Arugula",
+    type: "arugula",
+    cost: price1,
+  },
   { name: "Daisy", type: "daisy", cost: price1 },
   { name: "Iris", type: "iris", cost: price1 },
-  { name: "Lavender", type: "lavender", cost: price1 },
   { name: "Lotus", type: "lotus", cost: price1 },
-  { name: "Marigold", type: "marigold", cost: price1 },
-  { name: "Morning Glory", type: "morning-glory", cost: price1 },
-  { name: "Pansy", type: "pansy", cost: price1 },
-  { name: "Pink Rose", type: "pink-rose", cost: price1 },
+  {
+    name: "Marigold",
+    type: "marigold",
+    cost: price1,
+  },
+  {
+    name: "Pink Rose",
+    type: "pink-rose",
+    cost: price1,
+  },
   { name: "Poppy", type: "poppy", cost: price1 },
-  { name: "Sunflower", type: "sunflower", cost: price1 },
+  {
+    name: "Sunflower",
+    type: "sunflower",
+    cost: price1,
+  },
   { name: "Tomato", type: "tomato", cost: price1 },
   { name: "Tree", type: "tree", cost: price1 },
-  { name: "Tulips", type: "tulips", cost: price1 },
-  { name: "Garden Expansion", type: "expansion", cost: 0 }, // Cost will be calculated dynamically
-  // Add this to the shopItems array, right after the "Garden Expansion" item
+  { name: "Cactus", type: "cactus", cost: price1 },
+  { name: "Palm", type: "palm", cost: price1 },
+  { name: "Bonsai", type: "bonsai", cost: price1 },
+  { name: "Bamboo", type: "bamboo", cost: price1 },
+  {
+    name: "Hibiscus",
+    type: "hibiscus",
+    cost: price1,
+  },
+  { name: "Orchid", type: "orchid", cost: price1 },
+  {
+    name: "Cherry Blossom",
+    type: "cherry-blossom",
+    cost: price1,
+  },
+  {
+    name: "Mushroom",
+    type: "mushroom",
+    cost: price1,
+  },
+  { name: "Herb", type: "herb", cost: price1 },
+  {
+    name: "Seedling",
+    type: "seedling",
+    cost: price1,
+  },
+  { name: "Leaves", type: "leaves", cost: price1 },
+  {
+    name: "Four Leaf Clover",
+    type: "four-leaf-clover",
+    cost: price1,
+  },
+  {
+    name: "Maple Leaf",
+    type: "maple-leaf",
+    cost: price1,
+  },
+  {
+    name: "Evergreen",
+    type: "evergreen",
+    cost: price1,
+  },
+  { name: "Rock", type: "rock", cost: price1 },
+  {
+    name: "Garden Expansion",
+    type: "expansion",
+    cost: 0,
+  },
   { name: "Shuffle Garden", type: "shuffle", cost: 50 },
-  { name: "Delete Random Plant", type: "delete", cost: 30 },
+  { name: "Sell Plant", type: "sell", cost: -20 },
 ];
 
-for (const item of shopItems) {
-  item.emoji = plantEmojis[item.type] || "";
+function initializeShopItems(): void {
+  for (const item of shopItems) {
+    item.emoji = emojis[item.type as any as EmojiKey] || "?";
+  }
 }
 
 function calculateExpansionPrice(currentSize: number): number {
@@ -42,6 +102,7 @@ function calculateExpansionPrice(currentSize: number): number {
 
 export async function showShop(): Promise<void> {
   let data = await loadData();
+  initializeShopItems();
 
   while (true) {
     clearConsole();
@@ -88,6 +149,31 @@ async function purchaseItem(
   data: BreathingData,
   item: ShopItem
 ): Promise<void> {
+  if (item.name === "Sell Plant") {
+    if (data.plants && data.plants.length > 0) {
+      const plantChoices = data.plants.map((plant, index) => ({
+        name: `${plant.name} at (${plant.x}, ${plant.y})`,
+        value: index,
+      }));
+
+      const response: { plantIndex: number } = await prompt({
+        type: "select",
+        name: "plantIndex",
+        message: "Select a plant to sell:",
+        choices: plantChoices,
+      });
+      const soldPlant = data.plants.splice(response.plantIndex, 1)[0];
+      data.coins += Math.abs(item.cost); // Add 20 coins
+      console.log(`You've sold a ${soldPlant.name} for 20 coins!`);
+
+      // Save the updated data
+      await saveData(data);
+    } else {
+      console.log("Your garden is empty. There are no plants to sell.");
+    }
+    await sleep(2000);
+    return;
+  }
   const cost =
     item.name === "Garden Expansion"
       ? calculateExpansionPrice(data.gardenSize)

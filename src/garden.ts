@@ -1,4 +1,4 @@
-import { plantEmojis } from "./emoji";
+import { EmojiKey, emojis } from "./emoji";
 import { loadData } from "./storage";
 import { clearConsole } from "./utils";
 
@@ -14,7 +14,7 @@ export async function showGarden(): Promise<void> {
     for (let x = 0; x < data.gardenSize; x++) {
       const plant = data.plants.find((p) => p.x === x && p.y === y);
       if (plant) {
-        row += plantEmojis[plant.type] || "🌱"; // Default to seedling if type not found
+        row += emojis[plant.type as EmojiKey] || "🌱"; // Default to seedling if type not found
       } else {
         row += emptyPlotEmoji; // Empty plot
       }
