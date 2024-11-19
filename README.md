@@ -97,15 +97,31 @@ Box breathing, also known as square breathing, is a simple yet effective techniq
 Start your journey to better mental health today!
 
 
-🌿 How to Use
-1.
-Start a Breathing Session: Choose the duration and follow the on-screen prompts.
-2.
-Track Your Progress: View your practice history and achievements.
-3.
-Grow Your Garden: Earn coins through consistent practice.
-4.
-Shop for Plants: Use your earned coins to buy new plants for your virtual garden.
+## 🌿 How to Use
+
+1. **Start a Breathing Session:**
+   - Choose your preferred breathing technique
+   - Set the duration for your session
+   - Follow the on-screen prompts to guide your breathing
+
+2. **Track Your Progress:**
+   - View your practice history
+   - Monitor your achievements and milestones
+   - Analyze your consistency over time
+
+3. **Grow Your Garden:**
+   - Earn coins through consistent practice
+   - Watch your virtual garden flourish as you progress
+
+4. **Shop for Plants:**
+   - Use your earned coins to purchase new plants
+   - Customize and expand your virtual garden
+   - Unlock special plants as you reach higher levels
+
+5. **Explore Different Techniques:**
+   - Try various breathing patterns to find what works best for you
+   - Experiment with custom breathing patterns for personalized sessions
+
 
 ## 💾 Data Storage
 
