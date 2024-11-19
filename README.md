@@ -111,35 +111,9 @@ Shop for Plants: Use your earned coins to buy new plants for your virtual garden
 
 Your progress and garden data are stored locally on your machine using the node-persist library. The data is typically saved in a `.node-persist` directory within your home folder (e.g., `~/.node-persist/` on Unix-like systems or `C:\Users\YourUsername\.node-persist\` on Windows). This ensures your data persists between sessions, allowing you to track your long-term progress.
 
-## 🛠️ Development
+## 🤝 Contributing
 
-To set up the project for development:
+Please create an issue before writing the code.
 
-1.
-Clone the repository:
-git clone https://github.com/jaroslaw-weber/cli-box-breathing.git
-2.
-Install dependencies:
-npm install
-3.
-Run the app in development mode:
-npm run start
-
-
-
-🤝 Contributing
-We welcome contributions! To contribute:
-
-1.
-Fork the repository
-2.
-Create your feature branch (git checkout -b feature/AmazingFeature)
-3.
-Commit your changes (git commit -m 'Add some AmazingFeature')
-4.
-Push to the branch (git push origin feature/AmazingFeature)
-5.
-Open a Pull Request
-
-📄 License
+## 📄 License
 This project is licensed under the MIT License - see the LICENSE file for details.
