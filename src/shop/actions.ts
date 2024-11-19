@@ -1,8 +1,8 @@
 import { prompt } from "enquirer";
 import { BreathingData, saveData } from "../storage";
-import { ShopItem, calculateExpansionPrice, getPlantValue } from "./shopItems";
-import { Plant } from "../Plant";
-import { emojis } from "../emoji";
+import { ShopItem, calculateExpansionPrice, getPlantValue } from "./items";
+import { Plant } from "../types/Plant";
+import { emojis } from "../const/emoji";
 
 export async function handleSellPlant(
   data: BreathingData,

@@ -1,4 +1,4 @@
-import { Plant } from "./Plant";
+import { Plant } from "./types/Plant";
 
 export function sleep(ms: number): Promise<void> {
   return new Promise((resolve) => setTimeout(resolve, ms));

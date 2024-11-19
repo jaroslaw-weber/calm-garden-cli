@@ -6,13 +6,13 @@ import {
   initializeShopItems,
   shopItems,
   calculateExpansionPrice,
-} from "./shopItems";
+} from "./items";
 import {
   handleSellPlant,
   handleGardenExpansion,
   handleShuffleGarden,
   handleRegularPurchase,
-} from "./shopHandlers";
+} from "./actions";
 import { sleep } from "../utils";
 
 export async function showShop(): Promise<void> {

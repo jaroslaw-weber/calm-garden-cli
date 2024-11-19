@@ -1,5 +1,5 @@
-import { emojis, EmojiKey } from "../emoji";
-import { Plant } from "../Plant";
+import { emojis, EmojiKey } from "../const/emoji";
+import { Plant } from "../types/Plant";
 
 export interface ShopItem {
   name: string;

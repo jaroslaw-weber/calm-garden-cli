@@ -1,7 +1,7 @@
 import storage from "node-persist";
 import path from "path";
 import os from "os";
-import { Plant } from "./Plant";
+import { Plant } from "./types/Plant";
 
 export interface BreathingData {
   totalSecondsPracticed: number; // number representing the total seconds the user has practiced so far
