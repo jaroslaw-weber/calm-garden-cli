@@ -1,15 +1,19 @@
 import { BreathingData, loadData, saveData } from "./storage";
 import { sleep, clearConsole } from "./utils";
-
+import { existsSync } from "fs";
+import { readFile } from "fs/promises";
+import { prompt } from "enquirer";
+import chalk from "chalk";
 interface BreathingPhase {
   name: string;
   duration: number;
 }
 
-interface BreathingPattern {
+export interface BreathingPattern {
   name: string;
   command: string;
   pattern: BreathingPhase[];
+  hint?: string;
 }
 
 const breathingPatterns: BreathingPattern[] = [
@@ -54,17 +58,22 @@ const breathingPatterns: BreathingPattern[] = [
 ];
 async function performBreathing(
   data: BreathingData,
-  pattern: BreathingPhase[]
+  pattern: BreathingPhase[],
+  session: {
+    time: number;
+  }
 ): Promise<void> {
   for (const phase of pattern) {
     for (let second = 1; second <= phase.duration; second++) {
       clearConsole();
       console.log(`${phase.name} ${second}/${phase.duration}`);
       console.log(`Coins: ${data.coins}`);
+      console.log(`Elapsed time: ${session.time} seconds`);
       console.log("Press Ctrl+C to stop the breathing exercise");
 
       await sleep(1000); // Wait for 1 second
 
+      session.time++;
       data.totalSecondsPracticed++;
       data.coins++;
       await saveData(data);
@@ -74,16 +83,21 @@ async function performBreathing(
 
 export async function startBreathing(type: string): Promise<void> {
   clearConsole();
+  const custom = await getCustomBreathingPatterns();
+
   let data = await loadData();
 
   console.log("Press Ctrl+C at any time to stop the breathing exercise.");
 
-  const selectedPattern = breathingPatterns.find((p) => p.command === type);
+  const selectedPattern = [...custom, ...breathingPatterns].find(
+    (p) => p.command === type
+  );
 
+  let session = { time: 0 };
   if (selectedPattern) {
     try {
       while (true) {
-        await performBreathing(data, selectedPattern.pattern);
+        await performBreathing(data, selectedPattern.pattern, session);
       }
     } catch (error) {
       if (error instanceof Error && error.name === "SIGINT") {
@@ -100,4 +114,20 @@ export async function startBreathing(type: string): Promise<void> {
       `Invalid breathing type. Please choose from: ${validCommands}.`
     );
   }
+}
+
+export async function getCustomBreathingPatterns(): Promise<
+  BreathingPattern[]
+> {
+  const filename = "breath.json";
+  if (existsSync(filename)) {
+    try {
+      const data = await readFile(filename, "utf8");
+      const customPatterns = JSON.parse(data);
+      return customPatterns as BreathingPattern[];
+    } catch (error) {
+      console.error(`Error reading ${filename}: ${(error as Error).message}`);
+    }
+  }
+  return [];
 }

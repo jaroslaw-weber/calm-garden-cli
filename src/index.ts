@@ -3,7 +3,7 @@ import { setupConfig } from "./cli";
 import { showGarden } from "./garden";
 import { showProgress } from "./progress";
 import { startBreathing } from "./breathe";
-import { showShop } from "./shop";
+import { showShop } from "./shop/shop";
 import { initStorage, resetData } from "./storage";
 
 async function main() {

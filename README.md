@@ -35,6 +35,24 @@ Calm Garden CLI offers several breathing techniques to help you reduce stress an
 
 Choose the technique that best suits your needs and start your journey to inner calm!
 
+## How to add custom breathing pattern
+
+Create "breathe.json" file and follow this example:
+
+```
+[{
+	name: "🌊 Advanced Box Breathing",
+	command: "advancedBox",
+	pattern: [
+		{ name: "Inhale", duration: 5 },
+		{ name: "Hold", duration: 5 },
+		{ name: "Exhale", duration: 5 },
+		{ name: "Hold", duration: 5 },
+	],
+	hint: "Box breathing but bit more difficult.",
+}]
+```
+
 ## 🖼️ Screenshots
 
 Breathing exercise:
