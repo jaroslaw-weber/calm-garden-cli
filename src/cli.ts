@@ -2,7 +2,9 @@ import { prompt } from "enquirer";
 import chalk from "chalk";
 import { existsSync } from "fs";
 import { readFile } from "fs/promises";
-import { BreathingPattern, getCustomBreathingPatterns } from "./breathe";
+import { getBreathingPatterns, getCustomBreathingPatterns } from "./breathe";
+import { BreathingPattern } from "./types/BreathingPattern";
+import { breathingPatterns } from "./const/patterns";
 
 export async function setupConfig() {
   console.log(chalk.green("\n🌿 Welcome to CLI Calm Garden 🌿\n"));
@@ -22,44 +24,15 @@ export async function setupConfig() {
   });
 
   if (mainResponse.action === "breathing") {
+    const patterns = await getBreathingPatterns();
     const breathingChoices = [
-      {
-        name: "box",
-        message: "🟦 Box Breathing",
-        hint: "Inhale, hold, exhale, hold - each for equal counts. Reduces stress and improves focus.",
-      },
-      {
-        name: "sigh",
-        message: "😮‍💨 Physiological Sigh",
-        hint: "Double inhale through the nose, followed by a long exhale. Quickly resets the nervous system.",
-      },
-      {
-        name: "pranayama",
-        message: "🌬️ Pranayama Breathing",
-        hint: "Ancient yogic breathing technique. Various patterns to balance body and mind.",
-      },
-      {
-        name: "coherent",
-        message: "🌊 Coherent Breathing",
-        hint: "Breathe at a rate of 5-7 breaths per minute. Promotes heart-brain coherence and calmness.",
-      },
+      ...patterns.map((p) => ({
+        name: p.name,
+        message: `${p.emoji} ${p.display}`,
+        hint: p.description!,
+      })),
     ];
 
-    const custom = await getCustomBreathingPatterns();
-    if (custom) {
-      function toPrompt(p: BreathingPattern): {
-        name: string;
-        message: string;
-        hint: string;
-      } {
-        return {
-          name: p.command,
-          message: p.name,
-          hint: p.hint!,
-        };
-      }
-      breathingChoices.push(...custom.map(toPrompt));
-    }
 
     const breathingResponse = await prompt<{ breathingType: string }>({
       type: "select",

@@ -40,17 +40,20 @@ Choose the technique that best suits your needs and start your journey to inner 
 Create "breathe.json" file and follow this example:
 
 ```
-[{
-	name: "🌊 Advanced Box Breathing",
-	command: "advancedBox",
-	pattern: [
-		{ name: "Inhale", duration: 5 },
-		{ name: "Hold", duration: 5 },
-		{ name: "Exhale", duration: 5 },
-		{ name: "Hold", duration: 5 },
-	],
-	hint: "Box breathing but bit more difficult.",
-}]
+[
+  {
+    "emoji": "🌊",
+    "display": "Advanced Box Breathing",
+    "name": "advancedBox",
+    "pattern": [
+      { "name": "Inhale", "duration": 5 },
+      { "name": "Hold", "duration": 5 },
+      { "name": "Exhale", "duration": 5 },
+      { "name": "Hold", "duration": 5 }
+    ],
+    "description": "Box breathing but bit more difficult."
+  }
+]
 ```
 
 ## 🖼️ Screenshots
